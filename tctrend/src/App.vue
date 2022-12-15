@@ -1,21 +1,25 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld :values="values"/>
+
+    <tc-trend :values="values" :down="down" :up="up" :unchanged="unchanged"/>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import TcTrend from './components/TcTrend.vue'
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    TcTrend
   },
 
 data() {
   return {
-    values: [8.19, 8.09, 8.12, 8.12, 8.42, 8.0, 8.39, 8.5, 8.24, 8.16],
+    values: [8.19,8.19, 8.09,8.09, 8.12, 8.12, 8.42,8.42, 8.0, 8.39,8.39,8.39, 8.5, 8.24, 8.24, 8.16],
+    up: 'blue',
+    down: 'green',
+    unchanged: 'purple',
+  
   };  
 }
 
