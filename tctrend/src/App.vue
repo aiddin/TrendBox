@@ -1,19 +1,26 @@
 <template>
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <HelloWorld :values="values"/>
   </div>
 </template>
 
 <script>
 import HelloWorld from './components/HelloWorld.vue'
-
 export default {
   name: 'App',
   components: {
     HelloWorld
-  }
+  },
+
+data() {
+  return {
+    values: [8.19, 8.09, 8.12, 8.12, 8.42, 8.0, 8.39, 8.5, 8.24, 8.16],
+  };  
 }
+
+}
+
 </script>
 
 <style>

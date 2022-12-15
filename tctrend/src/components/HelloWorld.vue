@@ -19,30 +19,31 @@ export default {
     return {
       values: [5, 10, 15, 20],
     // Define the value to compare against
-    compareValue: 10,
+    
       trends: [
-        { id: 1, direction: 'up' },
-        { id: 2, direction: 'down' },
-        { id: 3, direction: 'up' },
-        { id: 4, direction: 'down' },
-        { id: 4, direction: 'unchanged' },
+     
 
       ],
     };
   },
   methods: {
     // Method to check if a value is the same, more or less than the compareValue
-    checkValue(value) {
-      if (value == this.compareValue) {
-        return 'same';
-      } else if (value > this.compareValue) {
-        return 'more';
-      } else {
-        return 'less';
-      }
-    },
+      checkValue(value) {
+      
+        if (value == this.val) {
+          this.trends.push({values: value ,direction :'dash'})
+          this.val=value;
+        } else if (value > this.val) {
+          this.trends.push({values: value ,direction :'up'});
+          this.val=value;
+        } else if  (value < this.val){
+          this.trends.push({values: value ,direction :'down'});
+          this.val=value;
+        }
+       
+      },
 }
-}
+};
 </script>
 
 <style>
