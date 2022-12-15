@@ -1,7 +1,7 @@
 <template>
   <div>
     <span>
-      <tr v-for="trend in trends" :key="trend.id">
+      <tr v-for="trend in trends" :key="trend.id" >
         <span :style="unchangedStyle" v-if="trend.direction === 'unchanged' " class="arrow unchanged"></span>
         <span :style="downStyle" v-if="trend.direction === 'down'" class="arrow arrow-down"></span>
         <span :style="upStyle" v-if="trend.direction === 'up'" class="arrow arrow-up"></span>
@@ -14,7 +14,7 @@
 </template>
 
 <script>
-
+//normal box lol just box  of array with colors
 export default {
   props: ["values","up","down","unchanged"],
     data() {
