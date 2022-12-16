@@ -1,28 +1,28 @@
 <template>
-  <div>
-    <span>
-      <tr v-for="trend in trends" :key="trend.id" >
-        <span :style="unchangedStyle" v-if="trend.direction === 'unchanged' " class="arrow unchanged"></span>
-        <span :style="downStyle" v-if="trend.direction === 'down'" class="arrow arrow-down"></span>
-        <span :style="upStyle" v-if="trend.direction === 'up'" class="arrow arrow-up"></span>
-        
-      </tr>
-    </span>
-    
+    <div>
+      <th v-for="trends in trends" :key="trends" >
+        <td :style="unchangedStyle" v-if="trends.direction === 'unchanged' " class="box unchanged"></td>
+        <td :style="downStyle" v-if="trends.direction === 'down'" class="box down"></td>
+        <td :style="upStyle" v-if="trends.direction === 'up'" class="box up"></td>
+        <td  :style="nullStyle" v-if="trends.direction === 'null'" class="box null"></td>
+      </th>
   </div>
- 
+  {{values}}
 </template>
-
 <script>
 //normal box lol just box  of array with colors
 export default {
-  props: ["values","up","down","unchanged"],
+  props: ["values","up","down","unchanged","nullColor"],
     data() {
     return {
-      val: this.values[0],
+      limitarr:this.limit,
+     
       compareValue: 0,
       trends: [
       ],
+      valuesarr: this.values.map((item) => {
+        return item;
+      }), 
     };
   },
   computed:{
@@ -30,7 +30,7 @@ export default {
       if (this.up === undefined) return "";
       else
         return {
-          "border-bottom-color": this.up,
+          "background-color": this.up,
         };
     },
     unchangedStyle() {
@@ -44,27 +44,47 @@ export default {
       if (this.down === undefined) return "";
       else
         return {
-          "border-top-color": this.down,
+          "background-color": this.down,
+        };
+    },
+    nullStyle() {
+      if (this.nullColor === undefined) return "";
+      else
+        return {
+          "background-color": this.nullColor,
         };
     },
   },
   methods: {
     // Method to check if a value is the same, more or less than the compareValue
       checkValue() {
-      for (let i = 0; i < this.values.length; i++) {
-        this.compareValue=this.values[i];
-        if (this.compareValue === this.val) {
+      if (this.values.length <10){
+        for(let i=0 ;i< 10-this.values.length;i++ ){
+          this.valuesarr.unshift(undefined);
+      
+        } 
+      }
+      // }
+      // else if (this.valuesarr.length >10){
+      //   this.valuesarr.splice(0,(this.values.length-10));
+      // }
+      for (let i = 0; i < 10; i++) {
+        this.compareValue=this.valuesarr[i];
+        const valuesa = this.valuesarr[i-1];
+        if (this.compareValue === undefined){
+          this.trends.push({id:i ,values: this.compareValue ,direction :'null'});
+        }
+        else if (this.compareValue === valuesa) {
           this.trends.push({id:i ,values: this.compareValue ,direction :'unchanged'})
-        } else if (this.compareValue > this.val) {
+        } else if (this.compareValue > valuesa) {
           this.trends.push({id:i ,values: this.compareValue ,direction :'up'});  
-        } else if  (this.compareValue < this.val){
-          this.trends.push({id:i ,values: this.compareValue ,direction :'down'});      
+        } else if  (this.compareValue < valuesa){
+          this.trends.push({id:i ,values: this.compareValue ,direction :'down'});
         }
         this.val=this.compareValue;
-      
+        console.log("hehe")
       }
-        
-       console.log(this.trends);
+      
       },
 },
 beforeMount() {
@@ -75,26 +95,26 @@ beforeMount() {
 
 <style>
 
-.arrow{
-  text-align: center;
-  align-items: center;
-  margin: 10px;
-  display: inline-flex;
-  border: 1vh solid transparent;
+.box {
+  box-sizing: border-box;
+  width: 3vh;
+  height: 5vh;
+  background-color: lightgray;
+  border: 1px solid rgb(0, 0, 0);
+  display: inline-block;
+  margin: 0px;
 }
-.arrow.unchanged {
-  width: 8vh;
-  background: rgb(110, 110, 110);
+.box.up{
+  background-color: rgb(241, 31, 31);
 }
-.arrow.arrow-up{
-  border: 7vh solid transparent;
-  border-bottom-color: green;
-  border-top-width: 0px;
+.box.down{
+  background-color: rgb(48, 41, 41);
 }
-.arrow.arrow-down{
-  border: 7vh solid transparent;
-  border-top-color: red;
-  border-bottom-width: 0px;
+.box.unchanged{
+  background-color: rgb(39, 61, 187);
+}
+.box.null{
+  background-color: rgb(39, 61, 187);
 }
 
 </style>

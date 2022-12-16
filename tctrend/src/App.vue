@@ -1,7 +1,7 @@
 <template>
-  <div id="app">
+  <div >
 
-    <tc-trend :values="values" :down="down" :up="up" :unchanged="unchanged"/>
+    <tc-trend :values="values" :down="down" :up="up" :unchanged="unchanged" :nullColor="nullColor" />
   </div>
 </template>
 
@@ -15,35 +15,17 @@ export default {
 
 data() {
   return {
-    values: [8.19,8.19, 8.09,8.09, 8.12, 8.12, 8.42,8.42, 8.0, 8.39,8.39,8.39, 8.5, 8.24, 8.24, 8.16],
-    up: 'blue',
-    down: 'green',
-    unchanged: 'purple',
+    values: [  8.01,8.16,8.4,8.4,8.1,8.10, 8.19, 8.19, 8.19, 8.19],
+    
+    up: 'green',
+    down: 'red',
+    unchanged: 'greenyellow',
+    nullColor:'grey',
   
   };  
 }
-
 }
 
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
-<!-- 9.34
-8.38
-8.15
-8.84
-9.36
-8.52
-9.40
-8.58
-8.44
-9.51 -->
+
