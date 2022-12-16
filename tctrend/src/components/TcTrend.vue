@@ -84,6 +84,8 @@ export default {
         this.val=this.compareValue;
         console.log("hehe")
       }
+      if (this.trends.length >10){
+        this.trends.splice(0,(this.trends.length-10));
       
       },
 },
