@@ -7,8 +7,8 @@
         <td  :style="nullStyle" v-if="trends.direction === 'null'" class="box null"></td>
       </th>
   </div>
-  {{values}}
-  {{trends}}
+  <!-- {{values}}
+  {{trends}} -->
 </template>
 <script>
 //normal box lol just box  of array with colors
@@ -27,7 +27,8 @@ export default {
     };
   },
   computed:{
-    upStyle() {
+    //styles for the boxes
+    upStyle() { 
       if (this.up === undefined) return "";
       else
         return {
@@ -85,6 +86,7 @@ export default {
         this.val =this.compareValue;
         console.log("hehe")
       }
+      // check this.trends.length and add or remove elements
       if (this.trends.length <10){
         for(let i=0 ;i< 10-this.trends.length;i++ ){
           this.trends.unshift({id:-i ,values: undefined ,direction :'null'});
