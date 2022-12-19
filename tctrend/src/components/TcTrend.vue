@@ -8,6 +8,7 @@
       </th>
   </div>
   {{values}}
+  {{trends}}
 </template>
 <script>
 //normal box lol just box  of array with colors
@@ -16,7 +17,7 @@ export default {
     data() {
     return {
       limitarr:this.limit,
-     
+      val: this.values[0],
       compareValue: 0,
       trends: [
       ],
@@ -64,35 +65,40 @@ export default {
       
         } 
       }
-      // }
-      // else if (this.valuesarr.length >10){
-      //   this.valuesarr.splice(0,(this.values.length-10));
-      // }
+      
+      else if (this.valuesarr.length >10){
+        this.valuesarr.splice(0,(this.values.length-10));
+      }
       for (let i = 0; i < 10; i++) {
         this.compareValue=this.valuesarr[i];
-        var valuesa = this.valuesarr[i-1];
+    
         if (this.compareValue === undefined){
           this.trends.push({id:i ,values: this.compareValue ,direction :'null'});
         }
-        else if (this.compareValue === valuesa) {
+        else if (this.compareValue === this.val) {
           this.trends.push({id:i ,values: this.compareValue ,direction :'unchanged'})
-        } else if (this.compareValue > valuesa) {
+        } else if (this.compareValue > this.val) {
           this.trends.push({id:i ,values: this.compareValue ,direction :'up'});  
-        } else if  (this.compareValue < valuesa){
+        } else if  (this.compareValue < this.val){
           this.trends.push({id:i ,values: this.compareValue ,direction :'down'});
         }
-        valuesa =this.compareValue;
+        this.val =this.compareValue;
         console.log("hehe")
       }
-      // if (this.trends.length <10){
-      //   for(let i=0 ;i< 10-this.trends.length;i++ ){
-      //     this.trends.unshift({id:-i ,values: undefined ,direction :'null'});
+      if (this.trends.length <10){
+        for(let i=0 ;i< 10-this.trends.length;i++ ){
+          this.trends.unshift({id:-i ,values: undefined ,direction :'null'});
       
-      //   } 
-      //   if (this.trends.length >10){
-      //   this.trends.splice(0,(this.trends.length-10));
-      // }
-      // }
+        } 
+      }
+        else if (this.trends.length >10){
+        this.trends.splice(0,(this.trends.length-10));
+      }
+      else if (this.values.length === 10){
+        this.trends.splice(0,1);
+        this.trends.unshift({id:0 ,values: undefined ,direction :'null'});
+      }
+      
       
       console.log("hehe")
 },
