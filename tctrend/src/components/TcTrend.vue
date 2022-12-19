@@ -19,12 +19,26 @@ export default {
       limitarr:this.limit,
       val: this.values[0],
       compareValue: 0,
-      trends: [
-      ],
+      trends: [],
       valuesarr: this.values.map((item) => {
         return item;
       }), 
     };
+  },
+  watch:{
+    values:{ handler() {
+      this.val=this.values[0],
+      this.trends=[] // reset the trends array remove if you want to keep the trends
+        this.valuesarr = this.values.map((item) => {
+          return item;
+        });
+        this.checkValue();
+
+      },
+      deep:true,
+      
+    },
+    
   },
   computed:{
     //styles for the boxes
@@ -66,10 +80,10 @@ export default {
       
         } 
       }
-      
       else if (this.valuesarr.length >10){
         this.valuesarr.splice(0,(this.values.length-10));
       }
+
       for (let i = 0; i < 10; i++) {
         this.compareValue=this.valuesarr[i];
     
@@ -84,7 +98,7 @@ export default {
           this.trends.push({id:i ,values: this.compareValue ,direction :'down'});
         }
         this.val =this.compareValue;
-        console.log("hehe")
+        
       }
       // check this.trends.length and add or remove elements
       if (this.trends.length <10){
@@ -100,14 +114,8 @@ export default {
         this.trends.splice(0,1);
         this.trends.unshift({id:0 ,values: undefined ,direction :'null'});
       }
-      
-      
-      console.log("hehe")
 },
   },
-beforeMount() {
-  this.checkValue();
-},
 };
 </script>
 
