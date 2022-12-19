@@ -70,7 +70,7 @@ export default {
       // }
       for (let i = 0; i < 10; i++) {
         this.compareValue=this.valuesarr[i];
-        const valuesa = this.valuesarr[i-1];
+        var valuesa = this.valuesarr[i-1];
         if (this.compareValue === undefined){
           this.trends.push({id:i ,values: this.compareValue ,direction :'null'});
         }
@@ -81,14 +81,22 @@ export default {
         } else if  (this.compareValue < valuesa){
           this.trends.push({id:i ,values: this.compareValue ,direction :'down'});
         }
-        this.val=this.compareValue;
+        valuesa =this.compareValue;
         console.log("hehe")
       }
-      if (this.trends.length >10){
-        this.trends.splice(0,(this.trends.length-10));
+      // if (this.trends.length <10){
+      //   for(let i=0 ;i< 10-this.trends.length;i++ ){
+      //     this.trends.unshift({id:-i ,values: undefined ,direction :'null'});
       
-      },
+      //   } 
+      //   if (this.trends.length >10){
+      //   this.trends.splice(0,(this.trends.length-10));
+      // }
+      // }
+      
+      console.log("hehe")
 },
+  },
 beforeMount() {
   this.checkValue();
 },
