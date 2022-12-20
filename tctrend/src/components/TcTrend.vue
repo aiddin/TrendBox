@@ -7,8 +7,8 @@
         <td  :style="nullStyle" v-if="trends.direction === 'null'" class="box null"></td>
       </th>
   </div>
-  <!-- {{values}}
-  {{trends}} -->
+  {{values}}
+
 </template>
 <script>
 //normal box lol just box  of array with colors
@@ -17,7 +17,7 @@ export default {
     data() {
     return {
       limitarr:this.limit,
-      val: this.values[0],
+      val: this.values[0], 
       compareValue: 0,
       trends: [],
       valuesarr: this.values.map((item) => {
@@ -27,7 +27,7 @@ export default {
   },
   watch:{
     values:{ handler() {
-      this.val=this.values[0],
+      this.val=this.valuesarr[0],
       this.trends=[] // reset the trends array remove if you want to keep the trends
         this.valuesarr = this.values.map((item) => {
           return item;
@@ -81,7 +81,7 @@ export default {
         } 
       }
       else if (this.valuesarr.length >10){
-        this.valuesarr.splice(0,(this.values.length-10));
+        this.valuesarr.splice(0,(this.valuesarr.length-10));
       }
 
       for (let i = 0; i < 10; i++) {
