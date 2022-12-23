@@ -7,7 +7,6 @@
         <td  :style="nullStyle" v-if="trends.direction === 'null'" class="box null"></td>
       </th>
   </div>
-  {{values}}
 
 </template>
 <script>
@@ -25,10 +24,11 @@ export default {
       }), 
     };
   },
+  //watch for changes in values
   watch:{
     values:{ handler() {
       this.val=this.valuesarr[0],
-      this.trends=[] // reset the trends array remove if you want to keep the trends
+      this.trends=[] 
         this.valuesarr = this.values.map((item) => {
           return item;
         });
@@ -127,7 +127,7 @@ export default {
   height: 5vh;
   background-color: lightgray;
   border: 1px solid rgb(0, 0, 0);
-  display: inline-block;
+  display: flex;
   margin: 0px;
 }
 .box.up{
