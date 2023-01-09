@@ -98,13 +98,12 @@ export default {
           this.trends.push({id:i ,values: this.compareValue ,direction :'down'});
         }
         this.val =this.compareValue;
-        
       }
+      
       // check this.trends.length and add or remove elements
       if (this.trends.length <10){
         for(let i=0 ;i< 10-this.trends.length;i++ ){
           this.trends.unshift({id:-i ,values: undefined ,direction :'null'});
-      
         } 
       }
         else if (this.trends.length >10){
